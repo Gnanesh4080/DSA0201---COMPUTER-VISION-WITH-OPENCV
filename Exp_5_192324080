@@ -1,0 +1,26 @@
+import cv2
+
+# Read Image
+img = cv2.imread("image.jpg")
+
+# Get image dimensions
+(h, w) = img.shape[:2]
+
+# Find center
+center = (w // 2, h // 2)
+
+# Clockwise Rotation (45 degrees)
+M1 = cv2.getRotationMatrix2D(center, -45, 1.0)
+clockwise = cv2.warpAffine(img, M1, (w, h))
+
+# Counter Clockwise Rotation (45 degrees)
+M2 = cv2.getRotationMatrix2D(center, 45, 1.0)
+counter = cv2.warpAffine(img, M2, (w, h))
+
+# Display Images
+cv2.imshow("Original Image", img)
+cv2.imshow("Clockwise Rotation", clockwise)
+cv2.imshow("Counter Clockwise Rotation", counter)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
